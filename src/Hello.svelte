@@ -5,6 +5,9 @@
   };
 </script>
 
-<div class="text-3xl font-bold" on:click={onClick}>
-  Hello from Svelte!! {extraText}
+<div class="text-3xl font-bold">
+  Hello from Svelte!!
+  <button on:click={onClick}>
+    {extraText}
+  </button>
 </div>

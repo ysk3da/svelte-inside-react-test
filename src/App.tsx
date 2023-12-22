@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React, { useLayoutEffect, useRef } from 'react';
 import './App.css';
 import Counter from "./Counter.svelte";
@@ -9,7 +10,7 @@ function App() {
 
   function SvelteWrapper(Component){
       const svelteRef = useRef<HTMLDivElement>(null);
-      return (props) => {
+      return (props: unknown) => {
         // このAppがマウントされた直後に呼び出される
         useLayoutEffect(()=>{
           // React.StrictModeでは 2回LayoutEffectが走る 最も簡単な方法はfistChildを確認して、あれば削除する方法
@@ -37,10 +38,10 @@ function App() {
           extraText="Here is React!!!"
           onClick={increment}
          />
-         <SvelteCounter/>
         <button className='btn btn-success' onClick={increment}>
           count is {count}
         </button>
+         <SvelteCounter/>
       </div>
     </>
   )
