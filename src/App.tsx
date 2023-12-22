@@ -1,41 +1,36 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import './App.css';
 import Hello from "./Hello.svelte";
-
-// ここで、汎用化を考えましょう。
-export const SvelteWrapper = (props = {}) => {
-  const svelteRef = useRef<HTMLDivElement>(null);
-  const helloCompRef = useRef<Hello | null>(null);
-
-  // このAppがマウントされた直後に呼び出される
-  useEffect(() => {
-    // React.StrictModeでは 2回LayoutEffectが走る 最も簡単な方法はfistChildを確認して、あれば削除する方法
-    // while (svelteRef.current?.firstChild) {
-    //   svelteRef.current?.firstChild?.remove();
-    // }
-    if (svelteRef.current) {
-      helloCompRef.current = new Hello({
-        target: svelteRef.current,
-        props,
-      })
-    }
-    return () => {
-      if (helloCompRef.current) {
-        helloCompRef.current.destroy();
-      }
-    };
-  },[props]);
-  return <div ref={svelteRef}></div>
-}
+import useStore from "./store";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { count, increment }= useStore();
 
+  const svelteRef = useRef<HTMLDivElement>(null);
+  
+  // このAppがマウントされた直後に呼び出される
+  useLayoutEffect(()=>{
+    // React.StrictModeでは 2回LayoutEffectが走る 最も簡単な方法はfistChildを確認して、あれば削除する方法
+    while (svelteRef.current?.firstChild) {
+      svelteRef.current?.firstChild?.remove();
+    }
+    if(svelteRef.current) {
+      new Hello({
+        target: svelteRef.current,
+        props: {
+          extraText: "here is React",
+          onClick: increment
+        }
+      })
+    }
+  }, [])
+  
+  
   return (
     <>
       <div>
-        <SvelteWrapper/>
-        <button className='btn btn-success' onClick={() => setCount((count) => count + 1)}>
+        <div ref={svelteRef}></div>
+        <button className='btn btn-success' onClick={increment}>
           count is {count}
         </button>
       </div>
