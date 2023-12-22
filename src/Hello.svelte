@@ -7,7 +7,7 @@
 
 <div class="text-3xl font-bold">
   Hello from Svelte!!
-  <button on:click={onClick}>
+  <button class="btn" on:click={onClick}>
     {extraText}
   </button>
 </div>

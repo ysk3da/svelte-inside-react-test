@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
+// @ts-ignore
 import Counter from "./Counter.svelte";
+// @ts-ignore
 import Hello from "./Hello.svelte";
 import { SvelteWrapper } from './SvelteWrapper';
 import useStore from "./store";
@@ -15,7 +17,8 @@ function App() {
     <>
       <div>
         <SvelteHello
-          extraText="Here is React!!!"
+          // @ts-ignore
+          extraText="props to Svelte from React!!!"
           onClick={increment}
          />
         <button className='btn btn-success' onClick={increment}>
