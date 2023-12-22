@@ -29,3 +29,4 @@ HTMLとCSSがセットなので見た目で分割できていること。(コン
 TODO
 
 - ESlintのSvelte側の設定
+- ts-ignoreの解決
