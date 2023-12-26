@@ -30,3 +30,9 @@ TODO
 
 - ESlintのSvelte側の設定
 - ts-ignoreの解決
+
+
+## Reference
+
+- [Next.js + SvelteによるnoteのフロントエンドApp分割](https://note.jp/n/n7f757d7050f6)
+- [ReactとSvelteでマイクロフロントエンドを行う二つの方法を試してみる](https://engineering.nifty.co.jp/blog/3859)
